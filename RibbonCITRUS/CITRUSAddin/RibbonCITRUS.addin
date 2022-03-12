@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>CITRUS</Name>
+		<Assembly>RibbonCITRUS.dll</Assembly>
+		<ClientId>6f00eeea-d900-4ce3-b0cc-1409fc3dfc47</ClientId>
+		<FullClassName>RibbonCITRUS.App</FullClassName>
+		<VendorId>Misharev Evgeny</VendorId>
+		<VendorDescription>MisharevEA@gmail.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>
