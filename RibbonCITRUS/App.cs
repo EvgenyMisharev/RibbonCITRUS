@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.UI;
 using System;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace RibbonCITRUS
 {
@@ -22,7 +23,7 @@ namespace RibbonCITRUS
 
             try
             {
-                CreateRebarRibbon(application, tabName);
+                CreateArchitecturalRibbon(application, tabName);
 
                 return Result.Succeeded;
             }
@@ -39,19 +40,12 @@ namespace RibbonCITRUS
             return Result.Succeeded;
         }
 
-        private void CreateRebarRibbon(UIControlledApplication uiApp, string tabName)
+        private void CreateArchitecturalRibbon(UIControlledApplication uiApp, string tabName)
         {
             RibbonPanel arpanel = uiApp.CreateRibbonPanel(tabName, "АР");
             arpanel.AddItem(CreateButtonData("FloorCreator", "FloorCreatorCommand"));
             arpanel.AddItem(CreateButtonData("FinishNumerator", "FinishNumeratorCommand"));
-            //RibbonPanel panel = uiApp.CreateRibbonPanel(tabName, "Армирование");
-            //panel.AddItem(CreateButtonData("SquareColumnsReinforcement", "SquareColumnsReinforcementCommand"));
-            //panel.AddItem(CreateButtonData("RectangularColumnsReinforcement", "RectangularColumnsReinforcementCommand"));
 
-            //PushButtonData dataAreaMark = CreateButtonData("AreaRebarMark", "CommandManualStart");
-            //PushButtonData dataHideRebars = CreateButtonData("RebarPresentation", "Command");
-            //PushButtonData dataExplodeRebars = CreateButtonData("ExplodeRebarSet", "CommandExplode");
-            //panel.AddStackedItems(dataAreaMark, dataHideRebars, dataExplodeRebars);
 
         }
 
@@ -60,8 +54,8 @@ namespace RibbonCITRUS
             string dllPath = Path.Combine(ribbonPath, assemblyName, assemblyName + ".dll");
             string fullClassname = assemblyName + "." + className;
             string dataPath = Path.Combine(ribbonPath, assemblyName, "data");
-            //string largeIcon = Path.Combine(dataPath, className + "_large.png");
-            //string smallIcon = Path.Combine(dataPath, className + "_small.png");
+            string largeIcon = Path.Combine(dataPath, className + "_large.png");
+            string smallIcon = Path.Combine(dataPath, className + "_small.png");
             string textPath = Path.Combine(dataPath, className + ".txt");
             string[] text = File.ReadAllLines(textPath);
             string title = text[0].Replace("\\n", "\n");
@@ -70,8 +64,8 @@ namespace RibbonCITRUS
 
             PushButtonData data = new PushButtonData(fullClassname, title, dllPath, fullClassname);
 
-            //data.LargeImage = new BitmapImage(new Uri(largeIcon, UriKind.Absolute));
-            //data.Image = new BitmapImage(new Uri(smallIcon, UriKind.Absolute));
+            data.LargeImage = new BitmapImage(new Uri(largeIcon, UriKind.Absolute));
+            data.Image = new BitmapImage(new Uri(smallIcon, UriKind.Absolute));
 
             data.ToolTip = text[1];
 

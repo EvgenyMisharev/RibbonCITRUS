@@ -36,6 +36,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
       <HintPath>C:\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
       <Private>False</Private>
