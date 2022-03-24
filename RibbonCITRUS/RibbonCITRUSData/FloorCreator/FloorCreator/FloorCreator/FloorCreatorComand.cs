@@ -13,7 +13,6 @@ namespace FloorCreator
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     class FloorCreatorCommand : IExternalCommand
     {
-        //СОБРАТЬ ПРЕДУПРЕЖДЕНИЯ ПО ПОМЕЩЕНИЯМ!!!!
         FloorCreatorProgressBarWPF floorCreatorProgressBarWPF;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -28,7 +27,7 @@ namespace FloorCreator
                 .Where(f => f.get_Parameter(BuiltInParameter.ALL_MODEL_MODEL).AsString() == "Пол" 
                 || f.get_Parameter(BuiltInParameter.ALL_MODEL_MODEL).AsString() == "Полы")
                 .Cast<FloorType>()
-                .OrderBy(f => f.Name)
+                .OrderBy(f => f.Name, new AlphanumComparatorFastString())
                 .ToList();
 
             //Вызов формы
@@ -52,7 +51,15 @@ namespace FloorCreator
                 if (roomList.Count == 0)
                 {
                     RoomSelectionFilter selFilter = new RoomSelectionFilter();
-                    IList<Reference> selRooms = sel.PickObjects(ObjectType.Element, selFilter, "Выберите помещения!");
+                    IList<Reference> selRooms = null;
+                    try
+                    {
+                        selRooms = sel.PickObjects(ObjectType.Element, selFilter, "Выберите помещения!");
+                    }
+                    catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+                    {
+                        return Result.Cancelled;
+                    }
 
                     foreach (Reference roomRef in selRooms)
                     {
@@ -183,7 +190,15 @@ namespace FloorCreator
                     if (roomList.Count == 0)
                     {
                         RoomSelectionFilter selFilter = new RoomSelectionFilter();
-                        IList<Reference> selRooms = sel.PickObjects(ObjectType.Element, selFilter, "Выберите помещения!");
+                        IList<Reference> selRooms = null;
+                        try
+                        {
+                            selRooms = sel.PickObjects(ObjectType.Element, selFilter, "Выберите помещения!");
+                        }
+                        catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+                        {
+                            return Result.Cancelled;
+                        }
 
                         foreach (Reference roomRef in selRooms)
                         {
