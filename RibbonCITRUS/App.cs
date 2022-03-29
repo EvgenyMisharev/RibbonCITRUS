@@ -44,8 +44,8 @@ namespace RibbonCITRUS
         {
             RibbonPanel arpanel = uiApp.CreateRibbonPanel(tabName, "АР");
             arpanel.AddItem(CreateButtonData("FloorCreator", "FloorCreatorCommand"));
-            arpanel.AddItem(CreateButtonData("FinishNumerator", "FinishNumeratorCommand"));
-
+            arpanel.AddItem(CreateButtonData("FloorFinishNumerator", "FloorFinishNumeratorCommand"));
+            arpanel.AddItem(CreateButtonData("RoomFinishNumerator", "RoomFinishNumeratorCommand"));
 
         }
 
