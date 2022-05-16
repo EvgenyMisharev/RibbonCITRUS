@@ -46,7 +46,8 @@ namespace RibbonCITRUS
             arpanel.AddItem(CreateButtonData("FloorCreator", "FloorCreatorCommand"));
             arpanel.AddItem(CreateButtonData("FloorFinishNumerator", "FloorFinishNumeratorCommand"));
             arpanel.AddItem(CreateButtonData("RoomFinishNumerator", "RoomFinishNumeratorCommand"));
-
+            arpanel.AddItem(CreateButtonData("LintelCreator", "LintelCreatorCommand"));
+            arpanel.AddItem(CreateButtonData("LintelSketch", "LintelSketchCommand"));
         }
 
         public PushButtonData CreateButtonData(string assemblyName, string className)
