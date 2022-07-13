@@ -43,11 +43,21 @@ namespace RibbonCITRUS
         private void CreateArchitecturalRibbon(UIControlledApplication uiApp, string tabName)
         {
             RibbonPanel arpanel = uiApp.CreateRibbonPanel(tabName, "АР");
+            arpanel.AddItem(CreateButtonData("RefreshRoomFinishingMark", "RefreshRoomFinishingMarkCommand"));
             arpanel.AddItem(CreateButtonData("FloorCreator", "FloorCreatorCommand"));
             arpanel.AddItem(CreateButtonData("FloorFinishNumerator", "FloorFinishNumeratorCommand"));
             arpanel.AddItem(CreateButtonData("RoomFinishNumerator", "RoomFinishNumeratorCommand"));
+            arpanel.AddItem(CreateButtonData("CeilingFinishNumerator", "CeilingFinishNumeratorCommand"));
+            arpanel.AddSeparator();
+            arpanel.AddItem(CreateButtonData("WallFinishCreator", "WallFinishCreatorCommand"));
+            arpanel.AddSeparator();
             arpanel.AddItem(CreateButtonData("LintelCreator", "LintelCreatorCommand"));
             arpanel.AddItem(CreateButtonData("LintelSketch", "LintelSketchCommand"));
+            arpanel.AddSeparator();
+            arpanel.AddItem(CreateButtonData("RoomNumerator", "RoomNumeratorCommand"));
+            arpanel.AddItem(CreateButtonData("ApartmentLayouts", "ApartmentLayoutsCommand"));
+            arpanel.AddSeparator();
+
         }
 
         public PushButtonData CreateButtonData(string assemblyName, string className)
